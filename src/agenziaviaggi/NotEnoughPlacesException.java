@@ -15,4 +15,9 @@ public class NotEnoughPlacesException extends Exception
     {
         return this.message;
     }
+    
+    @Override public String toString()
+    {
+        return this.message;
+    }
 }

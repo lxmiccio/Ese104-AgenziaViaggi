@@ -2,26 +2,33 @@ package agenziaviaggi;
 
 public class Prenotazione
 {
-	private Pacchetto pacchetto;
 	private String codice;
 	private int postiRichiesti;
-	private Cliente cliente;
 	private Filiale filiale;
-
-
-	public Prenotazione(String codice, int postiRichiesti, Cliente cliente, Filiale filiale)
-	{
-		this.codice = codice;
-		this.postiRichiesti = postiRichiesti;
-		this.cliente = cliente;
-		this.filiale = filiale;
-	}
-
-	public void setPacchetto(Pacchetto p)
-	{
-		this.pacchetto = p;
-	}
+	private Cliente cliente;
+	private Pacchetto pacchetto;
 	
+	public Prenotazione(String codice, int postiRichiesti, Filiale filiale, Cliente cliente)
+	{
+		if(codice.length() <= 0 || codice == null)
+		{
+			if (codice.length() <= 0)
+				throw new IllegalArgumentException("Lunghezza del codice deve essere maggiore di 0");
+			else
+				throw new IllegalArgumentException("Necessario assegnare il codice"); 
+		}
+		this.codice = codice;
+		if(postiRichiesti <= 0)
+			throw new IllegalArgumentException("Posti richiesti deve essere positivo");
+		this.postiRichiesti = postiRichiesti;
+		if (filiale == null)
+			throw new IllegalArgumentException("Necessario assegnare una filiale");
+		this.filiale = filiale;
+		if (cliente == null)
+			throw new IllegalArgumentException("Necessario assegnare cliente");
+		this.cliente = cliente;
+	}
+
 	public String getCodice()
 	{
 		return codice;
@@ -32,14 +39,24 @@ public class Prenotazione
 		return postiRichiesti;
 	}
 
+	public Filiale getFiliale()
+	{
+		return filiale;
+	}
+
 	public Cliente getCliente()
 	{
 		return cliente;
 	}
 
-	public Filiale getFiliale()
+	public void setPacchetto(Pacchetto p)
 	{
-		return filiale;
+		this.pacchetto = p;
+	}
+
+	public Pacchetto getPacchetto(Pacchetto p)
+	{
+		return pacchetto;
 	}
 
 	@Override public String toString()
