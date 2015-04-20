@@ -6,6 +6,8 @@ public class Filiale
 
 	public Filiale(int numero)
 	{
+		if(numero <= 0)
+			throw new IllegalArgumentException("Numero deve essere maggiore di 0");
 		this.numero = numero;
 	}
 
